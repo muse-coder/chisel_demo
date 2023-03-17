@@ -3,7 +3,7 @@
 package gcd
 
 import chisel3._
-import chisel3.util.Decoupled
+import chisel3.util.{Decoupled, DecoupledIO}
 
 class GcdInputBundle(val w: Int) extends Bundle {
   val value1 = UInt(w.W)
@@ -24,8 +24,8 @@ class GcdOutputBundle(val w: Int) extends Bundle {
   * Can handle stalls on the producer or consumer side
   */
 class DecoupledGcd(width: Int) extends Module {
-  val input = IO(Flipped(Decoupled(new GcdInputBundle(width))))
-  val output = IO(Decoupled(new GcdOutputBundle(width)))
+  val input: DecoupledIO[GcdInputBundle] = IO(Flipped(Decoupled(new GcdInputBundle(width))))
+  val output: DecoupledIO[GcdOutputBundle] = IO(Decoupled(new GcdOutputBundle(width)))
 
   val xInitial    = Reg(UInt())
   val yInitial    = Reg(UInt())
