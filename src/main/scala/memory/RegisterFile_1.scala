@@ -1,4 +1,4 @@
-package RegisterFile
+package memory
 import chisel3._
 import chisel3.util._
 import chisel3.experimental._
@@ -40,7 +40,7 @@ object register extends App{
     new (chisel3.stage.ChiselStage).emitVerilog(
       new RegisterFile_1(readPorts = 2,depth =8,dataWidth = 32) ,
       Array(
-        "--target-dir", "output/" + "RegisterFile"
+        "--target-dir", "output/" + "memory/instance"
       )
     )
   )

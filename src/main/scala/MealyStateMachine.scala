@@ -26,7 +26,7 @@ class MealyStateMachine (val mealyParams: MealyParams) extends Module {
     val in: Bool = Input(Bool())
     val out: UInt = Output(UInt())
   })
-  private val currentState = RegInit( UInt(1.W) , mealyParams.initialSate.U )
+   val currentState = RegInit( UInt(1.W) , mealyParams.initialSate.U )
   io.out := 0.U
   for (i <- 0 until mealyParams.stateNum){
     when(currentState === i.U){
